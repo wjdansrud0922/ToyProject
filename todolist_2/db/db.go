@@ -4,10 +4,17 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/go-sql-driver/mysql"
+	"github.com/joho/godotenv"
 	"os"
 )
 
 func ConnectDB() *sql.DB {
+
+	err := godotenv.Load("D:\\PROJECT\\toyProject\\.env")
+	if err != nil {
+		panic("Error loading .env file")
+	}
+
 	cfg := mysql.Config{
 		User:   os.Getenv("DBUSER"),
 		Passwd: os.Getenv("DBPASS"),
